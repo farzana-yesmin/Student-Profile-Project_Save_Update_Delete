@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>STUDENT PROFILE</title>
+		<marquee class="marquee">Please enter student information here carefully..........</marquee>
+		
+		
+		<link rel="stylesheet" href="css/student-profile.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		
+		<script src="js/angular.min.js"></script>
+		<script src="js/studentProfileJs.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+
+		<div ng-app="MyApp" ng-controller="StudentProfileController">
+			<div class="container">
+				<center><h1 class="well">STUDENT PROFILE SYSTEM</h1></center>
+				<div class="col-lg-12 well">
+					<div class="row">
+						<div class="col-md-6">
+							<label> Student Name </label>
+							<input ng-model="student_name" class="form-control" placeholder="Please enter your name.." />
+						</div>
+						<div class="col-md-6">
+							<label> Student's father Name </label>
+							<input ng-model="father_name" class="form-control" placeholder="Please enter your father's name.." />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label> Student's Mother Name </label>
+							<input ng-model="mother_name" class="form-control" placeholder="Please enter your mother's name.."/>
+						</div>
+						<div class="col-md-6">
+							<label> Student's Roll </label>
+							<input ng-model="roll_no" class="form-control" placeholder="Please enter your roll number.." />
+						</div>
+					</div>
+					<div class="row">
+						<button ng-click="saveStudentProfile()" class="btn btn-primary" style="margin-left: 20px;margin-top: 20px; float:left;">Save</button>
+						<button ng-click="updateStudentProfile(student_name,father_name,mother_name,roll_no)" class="btn btn-success" style="margin-left: 20px;margin-top: 20px; float:left;">Update</button>
+					</div>
+				</div>
+				<div class="col-lg-12 well">
+					<div class="table-responsive">
+						<table class="table table-border table-striped" style="width: 100%;">
+							<thead>
+								<tr>
+									<th>SL</th>
+									<th>Student's Name</th>
+									<th>Student's Father Name</th>
+									<th>Student's Mother Name</th>
+									<th>Student's Roll</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="studentProfileObject in studentProfileArray">
+									<td>{{ $index + 1 | number }}</td>
+									<td>{{studentProfileObject.student_name}}</td>
+									<td>{{studentProfileObject.father_name}}</td>
+									<td>{{studentProfileObject.mother_name}}</td>
+									<td>{{studentProfileObject.roll_no}}</td>
+									<td>
+										<button class="btn btn-lg btn-warning"  ng-click="editStudentProfile(studentProfileObject,studentProfileArray.indexOf(studentProfileObject))"><span class="glyphicon glyphicon-edit">Edit</span></button>
+									</td>
+									<td>
+										<button class="btn btn-danger"  ng-click="delete(studentProfileArray.indexOf(studentProfileObject))"><span class="glyphicon glyphicon-trash"></span>Delete</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					<div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
